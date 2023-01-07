@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DishService} from "../../services/dish.service";
 import {Dish} from "../../data-model/dish";
 
@@ -7,7 +7,7 @@ import {Dish} from "../../data-model/dish";
   templateUrl: './dishes.component.html',
   styleUrls: ['./dishes.component.scss']
 })
-export class DishesComponent {
+export class DishesComponent implements OnInit {
   dishes: Dish[] = [];
 
   constructor(private dishService: DishService) {

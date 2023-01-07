@@ -19,6 +19,7 @@ export enum DishCategory {
   Salad = 'Salad',
   Supper = 'Supper',
   Side = 'Side',
+  Other = 'Other',
 }
 
 export enum DishCuisine {
@@ -27,6 +28,7 @@ export enum DishCuisine {
   American = 'American',
   Japanese = 'Japanese',
   Mexican = 'Mexican',
+  Other = 'Other',
 
 }
 

@@ -14,10 +14,17 @@
   }
 }
 
-.info {
+
+.info-container {
   margin-left: 10px;
   margin-right: 10px;
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .info {
+    flex: 1;
+  }
 
   .name {
     margin: 10px 0;

@@ -20,6 +20,12 @@ export class DishService {
     return dish.price === Math.max(...DISHES.map(d => d.price));
   }
 
-  constructor() {
+  addDish(dish: Dish) {
+    dish.id = this.getId();
+    DISHES.push(dish);
+  }
+
+  getId(): number {
+    return DISHES.length + 1;
   }
 }

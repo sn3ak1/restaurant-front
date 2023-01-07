@@ -89,7 +89,7 @@ export const DISHES: Dish[] = [
     cuisine: DishCuisine.American,
     category: DishCategory.Breakfast,
     type: DishType.Meat,
-    price: 5,
+    price: 3,
     quantity: 11,
     ingredients: ['Bread', 'Ham', 'Salad', 'Tomato'],
   },

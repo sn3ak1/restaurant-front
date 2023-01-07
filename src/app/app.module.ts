@@ -5,9 +5,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './components/home/home.component';
 import {HeaderComponent} from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { DishesComponent } from './components/dishes/dishes.component';
-import { DishComponent } from './components/dish/dish.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {DishesComponent} from './components/dishes/dishes.component';
+import {DishComponent} from './components/dish/dish.component';
+import {AddDishComponent} from './components/add-dish/add-dish.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { DishComponent } from './components/dish/dish.component';
     HeaderComponent,
     FooterComponent,
     DishesComponent,
-    DishComponent
+    DishComponent,
+    AddDishComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
