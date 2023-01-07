@@ -1,4 +1,4 @@
-<div class="dish">
+<div class="dish" [class.border-red]="dishService.isCheapest(dish)" [class.border-green]="dishService.isMostExpensive(dish)">
   <div class="img-container"><img [src]="dish.images[0]" [alt]="dish.name"></div>
   <div class="info">
     <div>
@@ -21,10 +21,10 @@
     </div>
     <div class="buy">
       <h3>{{dish.price | currency:'USD':'symbol'}}</h3>
-      <h5>Quantity: {{dishesLeft()}}</h5>
+      <h5 [class.red]="dishesLeft()<4">Quantity: {{dishesLeft()}}</h5>
       <div class="buttons">
-        <button [disabled]="!dishesLeft()" (click)="cartService.addDish(dish)">+</button>
-        <button [disabled]="!dishCount()"  (click)="cartService.removeDish(dish)">-</button>
+        <button [class.invisible]="!dishesLeft()" (click)="cartService.addDish(dish)">+</button>
+        <button [class.invisible]="!dishCount()"  (click)="cartService.removeDish(dish)">-</button>
       </div>
     </div>
 

@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Dish} from "../../data-model/dish";
 import {CartService} from "../../services/cart.service";
+import {DishService} from "../../services/dish.service";
 
 @Component({
   selector: 'app-dish',
@@ -9,7 +10,7 @@ import {CartService} from "../../services/cart.service";
 })
 export class DishComponent {
 
-  constructor(public cartService: CartService) {
+  constructor(public cartService: CartService, public dishService: DishService) {
   }
 
   @Input() dish!: Dish;

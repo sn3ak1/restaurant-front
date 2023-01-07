@@ -12,6 +12,14 @@ export class DishService {
     return of(DISHES);
   }
 
+  isCheapest(dish: Dish) {
+    return dish.price === Math.min(...DISHES.map(d => d.price));
+  }
+
+  isMostExpensive(dish: Dish) {
+    return dish.price === Math.max(...DISHES.map(d => d.price));
+  }
+
   constructor() {
   }
 }
