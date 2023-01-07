@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Dish} from "../../data-model/dish";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-dish',
@@ -7,6 +8,10 @@ import {Dish} from "../../data-model/dish";
   styleUrls: ['./dish.component.scss']
 })
 export class DishComponent {
+
+  constructor(public cartService: CartService) {
+  }
+
   @Input() dish!: Dish;
 
   addToCart(dish: Dish) {
@@ -14,7 +19,7 @@ export class DishComponent {
   }
 
   increaseQuantity(dish: Dish) {
-
+    this.cartService.addDish(dish);
   }
 
   decreaseQuantity(dish: Dish) {

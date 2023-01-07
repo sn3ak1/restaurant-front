@@ -1,5 +1,5 @@
 <div class="dish">
-  <img [src]="dish.images[0]" [alt]="dish.name">
+  <div class="img-container"><img [src]="dish.images[0]" [alt]="dish.name"></div>
   <div class="info">
     <div>
       <h3 class="name">{{dish.name | uppercase}}</h3>
@@ -22,8 +22,10 @@
     <div class="buy">
       <h3>{{dish.price | currency:'USD':'symbol'}}</h3>
       <h5>Quantity: {{dish.quantity}}</h5>
-      <button (click)="increaseQuantity(dish)">+</button>
-      <button (click)="decreaseQuantity(dish)">-</button>
+      <div class="buttons">
+        <button (click)="cartService.addDish(dish)">+</button>
+        <button *ngIf="cartService.getDishCount(dish)" (click)="cartService.removeDish(dish)">-</button>
+      </div>
     </div>
 
   </div>

@@ -3,7 +3,7 @@
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  align-items: center;
+  //align-items: center;
 
   @media screen {
     @media (min-width: 768px) {
@@ -50,24 +50,36 @@
     white-space: nowrap;
     margin-left: 10px;
 
+    .buttons {
+      display: flex;
+      flex-direction: column;
+    }
+
     button {
-      margin-left: 5px;
+      width: 100%;
+      margin-top: 10px;
     }
   }
 
 }
 
-img {
-  height: 220px;
-  width: 300px;
-  min-width: 300px;
-  object-fit: cover;
-  object-position: center;
+.img-container {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  img {
+    height: 220px;
+    width: 300px;
+    min-width: 300px;
+    object-fit: cover;
+    object-position: center;
 
-  @media screen {
-    @media (max-width: 767px) {
-      width: 100%;
+    @media screen {
+      @media (max-width: 767px) {
+        width: 100%;
+      }
     }
   }
 }
