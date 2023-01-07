@@ -6,37 +6,34 @@ import {Dish} from "../data-model/dish";
 })
 export class CartService {
 
-  private dishes: Dish[] = [];
+  private cart: Map<Dish, number> = new Map<Dish, number>();
 
   addDish(dish: Dish) {
-    this.dishes.push(dish);
+    this.cart.set(dish, this.getDishCount(dish) + 1);
   }
 
   removeDish(dish: Dish) {
-    const index = this.dishes.indexOf(dish);
-    if (index > -1) {
-      this.dishes.splice(index, 1);
-    }
+    this.cart.set(dish, this.getDishCount(dish) - 1);
   }
 
   getDishes() {
-    return this.dishes;
+    return this.cart;
   }
 
   getTotalPrice() {
-    return this.dishes.reduce((acc, dish) => acc + dish.price, 0);
+    return [...this.cart.keys()].reduce((total: number, dish: Dish) => total + dish.price * this.getDishCount(dish), 0);
   }
 
   clearCart() {
-    this.dishes = [];
+    this.cart.clear();
   }
 
   getAllDishCount() {
-    return this.dishes.length;
+    return [...this.cart.values()].reduce((total: number, count: number) => total + count, 0);
   }
 
   getDishCount(dish: Dish) {
-    return this.dishes.filter(d => d.id === dish.id).length;
+    return this.cart.get(dish) || 0;
   }
 
   constructor() {
