@@ -1,10 +1,11 @@
 @use 'src/styles' as s;
 
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   height: 50px;
   background-color: #fff;
@@ -15,13 +16,18 @@ a {
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
   color: s.$primary-color;
+  text-align: center;
 
   &:hover {
     color: darken(s.$primary-color, 20%);
   }
 
-  img {
-    height: 60px;
+  &.logo {
+    height: 100%;
+
+    img {
+      max-height: 100%;
+    }
   }
 }
 
