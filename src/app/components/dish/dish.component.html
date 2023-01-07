@@ -20,7 +20,7 @@
       <p>{{dish.description}}</p>
     </div>
     <div class="buy">
-      <h3>{{dish.price | currency:'USD':true}}</h3>
+      <h3>{{dish.price | currency:'USD':'symbol'}}</h3>
       <h5>Quantity: {{dish.quantity}}</h5>
       <button (click)="increaseQuantity(dish)">+</button>
       <button (click)="decreaseQuantity(dish)">-</button>

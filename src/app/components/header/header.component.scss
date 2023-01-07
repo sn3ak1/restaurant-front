@@ -4,8 +4,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  height: 50px;
+  background-color: #fff;
 }
 
 a {
@@ -16,6 +18,10 @@ a {
 
   &:hover {
     color: darken(s.$primary-color, 20%);
+  }
+
+  img {
+    height: 60px;
   }
 }
 
