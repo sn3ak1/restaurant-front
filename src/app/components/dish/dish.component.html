@@ -1,0 +1,29 @@
+<div class="dish">
+  <img [src]="dish.images[0]" [alt]="dish.name">
+  <div class="info">
+    <div>
+      <h3 class="name">{{dish.name | uppercase}}</h3>
+
+      <div class="details">
+        <h4>{{dish.cuisine | uppercase}}</h4>
+        <h4>{{dish.type}}</h4>
+        <h4>{{dish.category}}</h4>
+      </div>
+
+      <ul>
+        <li>Ingredients:</li>
+        <li *ngFor="let ingredient of dish.ingredients">
+          {{ingredient}}
+        </li>
+      </ul>
+
+      <p>{{dish.description}}</p>
+    </div>
+    <div class="buy">
+      <h3>{{dish.price | currency:'USD':true}}</h3>
+      <h5>Quantity: {{dish.quantity}}</h5>
+      <button (click)="increaseQuantity(dish)">+</button>
+      <button (click)="decreaseQuantity(dish)">-</button>
+    </div>
+
+  </div>
