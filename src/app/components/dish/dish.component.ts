@@ -14,6 +14,15 @@ export class DishComponent {
 
   @Input() dish!: Dish;
 
+
+  dishCount() {
+    return this.cartService.getDishCount(this.dish);
+  }
+
+  dishesLeft() {
+    return this.dish.quantity - this.cartService.getDishCount(this.dish);
+  }
+
   addToCart(dish: Dish) {
 
   }

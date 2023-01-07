@@ -21,10 +21,10 @@
     </div>
     <div class="buy">
       <h3>{{dish.price | currency:'USD':'symbol'}}</h3>
-      <h5>Quantity: {{dish.quantity}}</h5>
+      <h5>Quantity: {{dishesLeft()}}</h5>
       <div class="buttons">
-        <button (click)="cartService.addDish(dish)">+</button>
-        <button *ngIf="cartService.getDishCount(dish)" (click)="cartService.removeDish(dish)">-</button>
+        <button [disabled]="!dishesLeft()" (click)="cartService.addDish(dish)">+</button>
+        <button [disabled]="!dishCount()"  (click)="cartService.removeDish(dish)">-</button>
       </div>
     </div>
 

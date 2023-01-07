@@ -32,4 +32,9 @@ button {
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    background-color: #fdfdfd;
+    cursor: not-allowed;
+  }
 }

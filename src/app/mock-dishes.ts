@@ -13,7 +13,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Meat,
     price: 10,
-    quantity: 1,
+    quantity: 10,
     ingredients: ['Tomato', 'Cheese', 'Meat'],
   },
   {
@@ -28,7 +28,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Meat,
     price: 8,
-    quantity: 1,
+    quantity: 12,
     ingredients: ['Meat', 'Bread', 'Cheese'],
   },
   {
@@ -44,7 +44,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Vegetarian,
     price: 12,
-    quantity: 1,
+    quantity: 5,
     ingredients: ['Pasta', 'Tomato'],
   },
   {
@@ -59,7 +59,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Salad,
     type: DishType.Vegetarian,
     price: 5,
-    quantity: 1,
+    quantity: 2,
     ingredients: ['Tomato', 'Cucumber', 'Lettuce'],
   },
   {
@@ -74,7 +74,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Soup,
     type: DishType.Vegetarian,
     price: 5,
-    quantity: 1,
+    quantity: 23,
     ingredients: ['Potato', 'Carrot']
   },
   {
@@ -90,7 +90,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Breakfast,
     type: DishType.Meat,
     price: 5,
-    quantity: 1,
+    quantity: 11,
     ingredients: ['Bread', 'Ham', 'Salad', 'Tomato'],
   },
   {
@@ -106,7 +106,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Meat,
     price: 50,
-    quantity: 1,
+    quantity: 6,
     ingredients: ['Meat']
   },
   {
@@ -122,7 +122,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Side,
     type: DishType.Vegetarian,
     price: 7,
-    quantity: 1,
+    quantity: 32,
     ingredients: ['Potato']
   },
   {
@@ -138,7 +138,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Fish,
     price: 20,
-    quantity: 1,
+    quantity: 12,
     ingredients: ['Rice', 'Fish']
   },
   {
@@ -154,7 +154,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Meat,
     price: 16,
-    quantity: 1,
+    quantity: 8,
     ingredients: ['Chicken', 'Curry']
   },
   {
@@ -170,7 +170,7 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Meat,
     price: 23,
-    quantity: 1,
+    quantity: 5,
     ingredients: ['Rice', 'Chicken']
   },
   {
@@ -186,6 +186,6 @@ export const DISHES: Dish[] = [
     category: DishCategory.Main,
     type: DishType.Meat,
     price: 15,
-    quantity: 1,
+    quantity: 10,
     ingredients: ['Tortilla', 'Rice', 'Beans', 'Meat']
   },]
