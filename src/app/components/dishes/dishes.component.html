@@ -1,5 +1,10 @@
 <ul>
-  <li *ngFor="let dish of dishes">
+  <div>
+    <label for="dish-name">Name</label>
+    <input #dishName id="dish-name" (input)="search(dishName.value)" placeholder="Name"/>
+  </div>
+
+  <li *ngFor="let dish of dishes$ | async">
     <app-dish [dish]="dish"></app-dish>
   </li>
 </ul>

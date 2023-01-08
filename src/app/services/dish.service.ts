@@ -35,6 +35,16 @@ export class DishService {
     );
   }
 
+  searchDishes(term: string): Observable<Dish[]> {
+    console.log("searchDishes: " + term);
+    if (!term.trim()) {
+      return this.getDishes();
+    }
+    return this.http.get<Dish[]>(`${this.dishesUrl}/?name=${term}`).pipe(
+      catchError(this.handleError<Dish[]>('searchDishes', []))
+    );
+  }
+
   getDish(id: string): Observable<Dish> {
     return this.http.get<Dish>(this.dishesUrl + "/" + id).pipe(
       catchError(this.handleError<Dish>('getDish'))
