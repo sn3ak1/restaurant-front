@@ -17,7 +17,8 @@ export class DishService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  private cachedDishes: Dish[] = [];
+  private cheapestPrice: number = 0;
+  private mostExpensivePrice: number = 0;
 
   // populateDatabase() {
   //   DISHES.forEach(dish => this.addDish(dish).subscribe());
@@ -25,8 +26,10 @@ export class DishService {
 
   getDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>(this.dishesUrl).pipe(
-      tap(dishes => this.cachedDishes = dishes),
-      tap(_ => console.log(this.cachedDishes)),
+      tap(dishes => {
+        this.cheapestPrice = Math.min(...dishes.map(d => d.price));
+        this.mostExpensivePrice = Math.max(...dishes.map(d => d.price));
+      }),
       catchError(this.handleError<Dish[]>('getDishes', []))
     );
   }
@@ -44,11 +47,11 @@ export class DishService {
   }
 
   isCheapest(dish: Dish) {
-    return dish.price === Math.min(...this.cachedDishes.map(d => d.price));
+    return dish.price === this.cheapestPrice;
   }
 
   isMostExpensive(dish: Dish) {
-    return dish.price === Math.max(...this.cachedDishes.map(d => d.price));
+    return dish.price === this.mostExpensivePrice;
   }
 
 
