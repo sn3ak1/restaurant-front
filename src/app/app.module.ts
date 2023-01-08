@@ -11,6 +11,7 @@ import {DishComponent} from './components/dish/dish.component';
 import {AddDishComponent} from './components/add-dish/add-dish.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

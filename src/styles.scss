@@ -1,6 +1,10 @@
 $primary-color: #F44336;
 $secondary-color: #FFEBEE;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;

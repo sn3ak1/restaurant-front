@@ -74,13 +74,23 @@ export class DishService {
     );
   }
 
+  getAverageRating(dish: Dish) {
+    if (dish.comments) {
+      return dish.comments.map(c => c.rating).reduce((previousValue, currentValue) => {
+        return previousValue + currentValue;
+      }, 0) / dish.comments.length;
+    } else {
+      return 0;
+    }
+  }
+
+
   private mongoObjectId() {
     const timestamp = (new Date().getTime() / 1000 | 0).toString(16);
     return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
       return (Math.random() * 16 | 0).toString(16);
     }).toLowerCase();
   };
-
 
   /**
    * Handle Http operation that failed.

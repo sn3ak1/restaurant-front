@@ -68,6 +68,12 @@
     }
   }
 
+  @media screen {
+    @media (max-width: 767px) {
+      width: auto;
+    }
+  }
+
 }
 
 .img-container {

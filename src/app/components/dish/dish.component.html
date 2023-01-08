@@ -18,6 +18,8 @@
         </li>
       </ul>
 
+      <fa-icon *ngFor="let star of stars" [icon]="star"></fa-icon>
+
       <p>{{dish.description}}</p>
     </div>
     <div class="buy">
