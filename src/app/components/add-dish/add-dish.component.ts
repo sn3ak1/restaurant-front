@@ -39,6 +39,7 @@ export class AddDishComponent implements OnInit {
   }
 
   addDish() {
+    this.dish.ingredients = this.ingredients.split(';');
     this.dishService.addDish(this.dish).subscribe();
     this.location.back();
   }

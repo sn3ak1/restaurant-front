@@ -3,6 +3,7 @@ import {Dish} from "../data-model/dish";
 import {catchError, Observable, of, tap} from "rxjs";
 // import {DISHES} from "../mock-dishes";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {DISHES} from "../mock-dishes";
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,9 @@ export class DishService {
   private cheapestPrice: number = 0;
   private mostExpensivePrice: number = 0;
 
-  // populateDatabase() {
-  //   DISHES.forEach(dish => this.addDish(dish).subscribe());
-  // }
+  populateDatabase() {
+    DISHES.forEach(dish => this.addDish(dish).subscribe());
+  }
 
   getDishes(): Observable<Dish[]> {
     return this.http.get<Dish[]>(this.dishesUrl).pipe(
@@ -53,6 +54,32 @@ export class DishService {
   isMostExpensive(dish: Dish) {
     return dish.price === this.mostExpensivePrice;
   }
+
+  addComment(dish: Dish, rating: number, comment: string) {
+    if (!dish.comments) {
+      dish.comments = [];
+    }
+
+    dish.comments.push({
+      _id: this.mongoObjectId(),
+      rating: rating,
+      comment: comment
+    });
+    return this.updateDish(dish);
+  }
+
+  updateDish(dish: Dish) {
+    return this.http.patch(this.dishesUrl + "/" + dish._id, dish, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateDish'))
+    );
+  }
+
+  private mongoObjectId() {
+    const timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
+      return (Math.random() * 16 | 0).toString(16);
+    }).toLowerCase();
+  };
 
 
   /**

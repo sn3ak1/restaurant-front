@@ -20,9 +20,6 @@ export class DishesComponent implements OnInit {
   getDishes() {
     this.dishService.getDishes().subscribe(dishes => {
       this.dishes = dishes;
-      this.dishService.getDish(dishes[0]._id).subscribe(dish => console.log(dish));
     });
   }
-
-
 }

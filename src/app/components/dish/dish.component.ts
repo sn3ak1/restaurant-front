@@ -23,20 +23,4 @@ export class DishComponent {
   dishesLeft() {
     return this.dish.quantity - this.cartService.getDishCount(this.dish);
   }
-
-  addToCart(dish: Dish) {
-
-  }
-
-  increaseQuantity(dish: Dish) {
-    this.cartService.addDish(dish);
-  }
-
-  decreaseQuantity(dish: Dish) {
-
-  }
-
-  removeFromCart(dish: Dish) {
-
-  }
 }
