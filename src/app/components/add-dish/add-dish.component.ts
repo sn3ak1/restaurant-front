@@ -20,10 +20,10 @@ export class AddDishComponent implements OnInit {
   ingredients: string = '';
 
   dish: Dish = {
+    _id: '',
     category: DishCategory.Other,
     cuisine: DishCuisine.Other,
     description: "",
-    id: -1,
     images: [],
     ingredients: [],
     name: "",
@@ -39,8 +39,7 @@ export class AddDishComponent implements OnInit {
   }
 
   addDish() {
-    this.dishService.addDish(this.dish);
+    this.dishService.addDish(this.dish).subscribe();
     this.location.back();
-    this.dishService.getDishes().subscribe(dishes => console.log(dishes));
   }
 }

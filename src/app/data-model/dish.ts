@@ -33,7 +33,7 @@ export enum DishCuisine {
 }
 
 export interface Dish {
-  id: number;
+  _id: string;
   name: string;
   images: string[];
   cuisine: DishCuisine;

@@ -10,6 +10,7 @@ import {DishesComponent} from './components/dishes/dishes.component';
 import {DishComponent} from './components/dish/dish.component';
 import {AddDishComponent} from './components/add-dish/add-dish.component';
 import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
