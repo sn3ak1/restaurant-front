@@ -11,7 +11,11 @@ import {DishComponent} from './components/dish/dish.component';
 import {AddDishComponent} from './components/add-dish/add-dish.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from '@angular/common/http';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {SearchDishComponent} from './components/search-dish/search-dish.component';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
+import { RangeSliderComponent } from './components/range-slider/range-slider.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +26,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DishesComponent,
     DishComponent,
     AddDishComponent,
+    SearchDishComponent,
+    RangeSliderComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

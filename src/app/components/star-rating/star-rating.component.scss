@@ -1,0 +1,13 @@
+@use "src/styles" as s;
+
+span {
+  color: s.$primary-color;
+
+  fa-icon {
+    margin-right: 3px;
+  }
+
+  fa-icon:last-child {
+    margin: 0;
+  }
+}

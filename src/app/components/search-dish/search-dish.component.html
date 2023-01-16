@@ -1,0 +1,35 @@
+<div>
+  <div>
+    <label for="dish-name">Name</label>
+    <input #dishName id="dish-name" (input)="search(dishName.value)" placeholder="Name"/>
+  </div>
+
+  <div>
+    <label for="dish-type">Dish type: </label>
+    <select id="dish-type" [(ngModel)]="type">
+      <option>{{type}}</option>
+      <option *ngFor="let type of dishTypes" [value]="type">{{type}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="dish-cuisine">Dish cuisine: </label>
+    <select id="dish-cuisine" [(ngModel)]="cuisine">
+      <option>{{cuisine}}</option>
+      <option *ngFor="let type of dishCuisines" [value]="type">{{type}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="dish-category">Dish category: </label>
+    <select id="dish-category" [(ngModel)]="category">
+      <option>{{category}}</option>
+      <option *ngFor="let type of dishCategories" [value]="type">{{type}}</option>
+    </select>
+  </div>
+
+  <app-range-slider></app-range-slider>
+
+  <app-star-rating [clickable]="true" [selectedStars]="1"></app-star-rating>
+
+</div>

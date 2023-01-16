@@ -43,6 +43,18 @@ button {
   }
 }
 
+.slider {
+  .ngx-slider {
+    .ngx-slider-selection {
+      background: $primary-color !important;
+    }
+
+    .ngx-slider-pointer {
+      background: $primary-color !important;
+    }
+  }
+}
+
 .invisible {
   visibility: hidden;
 }

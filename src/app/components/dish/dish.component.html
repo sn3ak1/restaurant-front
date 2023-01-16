@@ -18,7 +18,7 @@
         </li>
       </ul>
 
-      <fa-icon *ngFor="let star of stars" [icon]="star"></fa-icon>
+      <app-star-rating [selectedStars]="dishService.getAverageRating(dish)"></app-star-rating>
 
       <p>{{dish.description}}</p>
     </div>

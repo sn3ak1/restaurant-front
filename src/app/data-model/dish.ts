@@ -2,7 +2,7 @@ import {Comment} from "./comment";
 
 
 export enum DishType {
-  Vegan = 'Vegan',
+  Vegn = 'Vegan',
   Vegetarian = 'Vegetarian',
   Meat = 'Meat',
   Fish = 'Fish',
