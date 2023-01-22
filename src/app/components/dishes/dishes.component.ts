@@ -9,23 +9,13 @@ import {debounceTime, distinctUntilChanged, Observable, Subject, switchMap} from
   styleUrls: ['./dishes.component.scss']
 })
 export class DishesComponent implements OnInit {
-  dishes$!: Observable<Dish[]>;
-  private searchTerms = new Subject<string>();
 
   constructor(private dishService: DishService) {
   }
 
+  dishes!: Dish[];
+
   ngOnInit(): void {
-    this.dishes$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.dishService.searchDishes(term))
-    );
-
-    setTimeout(() => this.search(''), 0);
-  }
-
-  search(value: string) {
-    this.searchTerms.next(value);
+    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
   }
 }

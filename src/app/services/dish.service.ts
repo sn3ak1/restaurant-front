@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
+import {catchError, debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap, tap} from "rxjs";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Dish} from "../data-model/dish";
-import {catchError, Observable, of, tap} from "rxjs";
-// import {DISHES} from "../mock-dishes";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {DISHES} from "../mock-dishes";
+import {Comment} from "../data-model/comment";
+import {query} from "@angular/animations";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DishService {
-  constructor(private http: HttpClient) {
-  }
 
   private dishesUrl = "http://localhost:3000/dishes";
 
@@ -18,70 +16,52 @@ export class DishService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  private cheapestPrice: number = 0;
-  private mostExpensivePrice: number = 0;
+  dishes$!: Observable<Dish[]>;
+  watchDishes = new Subject<any>();
 
-  populateDatabase() {
-    DISHES.forEach(dish => this.addDish(dish).subscribe());
+  minPrice = 0;
+  maxPrice = 100;
+
+  priceRange: number[] = [0, 0];
+
+
+  constructor(private http: HttpClient) {
+    this.dishes$ = this.watchDishes
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((obj) => {
+          return this.http.get<Dish[]>(this.dishesUrl, {...this.httpOptions, params: obj?.query}).pipe(
+            tap(dishes => {
+              this.maxPrice = Math.max(...dishes.map(d => d.price));
+              this.minPrice = Math.min(...dishes.map(d => d.price));
+
+            }),
+            switchMap(dishes => {
+                if (obj?.priceRange.length > 0) {
+                  return of(dishes.filter(d => d.price >= this.priceRange[0] && d.price <= this.priceRange[1]));
+                }
+                return of(dishes);
+              }
+            ))
+        }));
+
+
+    setTimeout(() => this.watchDishes.next(null), 0);
   }
 
-  getDishes(): Observable<Dish[]> {
-    return this.http.get<Dish[]>(this.dishesUrl).pipe(
-      tap(dishes => {
-        this.cheapestPrice = Math.min(...dishes.map(d => d.price));
-        this.mostExpensivePrice = Math.max(...dishes.map(d => d.price));
-      }),
-      catchError(this.handleError<Dish[]>('getDishes', []))
-    );
-  }
 
-  searchDishes(term: string): Observable<Dish[]> {
-    console.log("searchDishes: " + term);
-    if (!term.trim()) {
-      return this.getDishes();
-    }
-    return this.http.get<Dish[]>(`${this.dishesUrl}/?name=${term}`).pipe(
-      catchError(this.handleError<Dish[]>('searchDishes', []))
-    );
-  }
-
-  getDish(id: string): Observable<Dish> {
-    return this.http.get<Dish>(this.dishesUrl + "/" + id).pipe(
-      catchError(this.handleError<Dish>('getDish'))
-    );
-  }
-
-  addDish(dish: Dish) {
-    return this.http.post<Dish>(this.dishesUrl, dish, this.httpOptions).pipe(
-      catchError(this.handleError<Dish>('addDish'))
-    );
+  updateParams(params: HttpParams, priceRange: number[] = []) {
+    this.priceRange = priceRange;
+    this.watchDishes.next({query: params, priceRange: priceRange});
   }
 
   isCheapest(dish: Dish) {
-    return dish.price === this.cheapestPrice;
+    return dish.price === this.minPrice;
   }
 
   isMostExpensive(dish: Dish) {
-    return dish.price === this.mostExpensivePrice;
-  }
-
-  addComment(dish: Dish, rating: number, comment: string) {
-    if (!dish.comments) {
-      dish.comments = [];
-    }
-
-    dish.comments.push({
-      _id: this.mongoObjectId(),
-      rating: rating,
-      comment: comment
-    });
-    return this.updateDish(dish);
-  }
-
-  updateDish(dish: Dish) {
-    return this.http.patch(this.dishesUrl + "/" + dish._id, dish, this.httpOptions).pipe(
-      catchError(this.handleError<any>('updateDish'))
-    );
+    return dish.price === this.maxPrice;
   }
 
   getAverageRating(dish: Dish) {
@@ -94,28 +74,41 @@ export class DishService {
     }
   }
 
+  removeDish(dish: Dish) {
+    return this.http.delete(this.dishesUrl + "/" + dish._id).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return of(error.json())
+      }),
+      tap(_ => this.watchDishes.next(null))
+    );
+  }
 
-  private mongoObjectId() {
-    const timestamp = (new Date().getTime() / 1000 | 0).toString(16);
-    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function () {
-      return (Math.random() * 16 | 0).toString(16);
-    }).toLowerCase();
-  };
+  addDish(dish: Dish) {
+    return this.http.post<Dish>(this.dishesUrl, dish, this.httpOptions).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return of(error.json())
+      }),
+      tap(_ => this.watchDishes.next(null))
+    );
+  }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   *
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+  getDishes(): Observable<Dish[]> {
+    return this.dishes$;
+  }
 
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  getOneDish(id: string): Observable<Dish> {
+    return this.http.get<Dish>(this.dishesUrl + "/" + id);
+  }
+
+  addReview(id: string, comment: Comment) {
+    return this.http.put(this.dishesUrl + "/" + id, {comment: Comment}, this.httpOptions).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return of(error.json())
+      }),
+      tap(_ => this.watchDishes.next(null))
+    );
   }
 }

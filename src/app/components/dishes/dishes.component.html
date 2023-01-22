@@ -7,7 +7,7 @@
   <!--  </div>-->
 
 
-  <li *ngFor="let dish of dishes$ | async">
+  <li *ngFor="let dish of dishes">
     <app-dish [dish]="dish"></app-dish>
   </li>
 </ul>

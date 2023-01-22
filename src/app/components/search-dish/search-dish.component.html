@@ -6,29 +6,29 @@
 
   <div>
     <label for="dish-type">Dish type: </label>
-    <select id="dish-type" [(ngModel)]="type">
-      <option>{{type}}</option>
+    <select id="dish-type" (change)="searchService.setType(type)" [(ngModel)]="type">
+      <option>All</option>
       <option *ngFor="let type of dishTypes" [value]="type">{{type}}</option>
     </select>
   </div>
 
   <div>
     <label for="dish-cuisine">Dish cuisine: </label>
-    <select id="dish-cuisine" [(ngModel)]="cuisine">
-      <option>{{cuisine}}</option>
-      <option *ngFor="let type of dishCuisines" [value]="type">{{type}}</option>
+    <select id="dish-cuisine" (change)="searchService.setCuisine(cuisine)" [(ngModel)]="cuisine">
+      <option>All</option>
+      <option *ngFor="let cuisine of dishCuisines" [value]="cuisine">{{cuisine}}</option>
     </select>
   </div>
 
   <div>
     <label for="dish-category">Dish category: </label>
-    <select id="dish-category" [(ngModel)]="category">
-      <option>{{category}}</option>
-      <option *ngFor="let type of dishCategories" [value]="type">{{type}}</option>
+    <select id="dish-category" (change)="searchService.setCategory(category)" [(ngModel)]="category">
+      <option>All</option>
+      <option *ngFor="let category of dishCategories" [value]="category">{{category}}</option>
     </select>
   </div>
 
-  <app-range-slider></app-range-slider>
+  <app-range-slider [floor]="minPrice" [ceil]="maxPrice"></app-range-slider>
 
   <app-star-rating [clickable]="true" [selectedStars]="1"></app-star-rating>
 

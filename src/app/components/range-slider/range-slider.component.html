@@ -1,3 +1,4 @@
 <div class="slider">
-  <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+  <ngx-slider (userChange)="onChange()"
+              [(value)]="minValue" [(highValue)]="maxValue" [options]="{floor: floor, ceil: ceil}"></ngx-slider>
 </div>
