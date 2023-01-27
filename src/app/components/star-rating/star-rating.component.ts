@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {faStar as starFull, faStarHalfStroke as starHalf} from "@fortawesome/free-solid-svg-icons" ;
 import {faStar as starEmpty} from "@fortawesome/free-regular-svg-icons" ;
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
+import {SearchService} from "../../services/search.service";
 
 @Component({
   selector: 'app-star-rating',
@@ -13,6 +14,9 @@ export class StarRatingComponent implements OnInit {
   @Input() selectedStars = 0;
   @Input() clickable = false;
   stars: IconDefinition[] = [];
+
+  constructor(private searchService: SearchService) {
+  }
 
   ngOnInit(): void {
     if (!this.clickable) {
@@ -41,5 +45,8 @@ export class StarRatingComponent implements OnInit {
     if (this.clickable) {
       this.stars.forEach((star, i) => this.stars[i] = i <= index ? starFull : starEmpty)
     }
+
+    this.searchService.setRating(index + 1);
+
   }
 }

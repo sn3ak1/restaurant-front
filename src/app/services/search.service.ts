@@ -12,6 +12,8 @@ export class SearchService {
   category: string = 'All';
   priceRange: number[] = [];
 
+  minRating = 0;
+
   updateParams() {
     let params = new HttpParams();
     if (this.name !== '') {
@@ -27,9 +29,10 @@ export class SearchService {
       params = params.set('category', this.category);
     }
 
-    // if (this.priceRange.length > 0) {
-    //   this.dishService.updateParams(params, this.priceRange);
-    // }
+    if (this.minRating > 0) {
+      params = params.set('rating', this.minRating);
+    }
+
     this.dishService.updateParams(params, this.priceRange);
 
   }
@@ -57,6 +60,12 @@ export class SearchService {
   setPriceRange(range: number[]) {
     this.priceRange = range;
     this.updateParams();
+  }
+
+  setRating(rating: number) {
+    // this.minRating = rating;
+    // this.updateParams();
+    //TODO implement rating
   }
 
   constructor(private dishService: DishService) {

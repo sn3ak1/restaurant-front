@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 class="h-25">Your order:</h1>
+  <ul>
+    <li *ngFor="let item of items">
+      <div class="row">
+        <div class="col-6">
+          <h3>{{item.name}}</h3>
+        </div>
+        <div class="col-3">
+          <h3>Count: {{cartService.getDishCount(item)}}</h3>
+        </div>
+        <div class="col-3">
+          <h3>Price: {{cartService.getTotalPriceForDish(item)}}</h3>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+  <button (click)="buy()"> Buy</button>
+</div>
+

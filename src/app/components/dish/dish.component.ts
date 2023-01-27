@@ -6,6 +6,7 @@ import {faStar as starFull} from "@fortawesome/free-solid-svg-icons" ;
 import {faStar as starEmpty} from "@fortawesome/free-regular-svg-icons" ;
 import {faStarHalfStroke as starHalf} from "@fortawesome/free-solid-svg-icons" ;
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -15,15 +16,21 @@ import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 })
 export class DishComponent implements OnInit {
 
-  constructor(public cartService: CartService, public dishService: DishService) {
+  constructor(public cartService: CartService, public dishService: DishService, public userService: UserService) {
+
   }
 
   @Input() dish!: Dish;
+  @Input() canModerate = false;
+  canBuy: boolean = false;
+
 
   stars: IconDefinition[] = [];
 
   ngOnInit(): void {
     this.stars = this.getStars(this.dishService.getAverageRating(this.dish));
+
+    this.canBuy = this.userService.getToken() != null;
   }
 
   dishCount() {

@@ -1,0 +1,17 @@
+<div class="container"><h1>Hello {{username}}</h1>
+  <ul>
+    <li *ngFor="let x of history">
+      <div>{{getDate(x.date)}}</div>
+      <div *ngFor="let y of x.dishes">
+        <ul>
+          <li>
+            <div>{{y.dish.name}}</div>
+            <div>Count: {{y.quantity}}</div>
+            <div>Price: {{x.total}}</div>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+</div>

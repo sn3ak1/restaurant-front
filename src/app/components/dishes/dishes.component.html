@@ -1,10 +1,6 @@
 <ul>
   <app-search-dish></app-search-dish>
-
-  <!--  <div>-->
-  <!--    <label for="dish-name">Name</label>-->
-  <!--    <input #dishName id="dish-name" (input)="search(dishName.value)" placeholder="Name"/>-->
-  <!--  </div>-->
+  <button style="width: 100%; margin: 10px auto" [routerLink]="'/add-dish'">ADD DISH</button>
 
 
   <li *ngFor="let dish of dishes">

@@ -1,4 +1,4 @@
-<span>
+<span [class.clickable]="clickable">
     <fa-icon *ngFor="let star of stars; let i = index;"
              [icon]="star"
              (click)="clicked(i)">

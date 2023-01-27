@@ -1,0 +1,9 @@
+<div [hidden]="userService.getToken()">
+  <button [routerLink]="'login'">Login</button>
+  <button [routerLink]="'register'">Register</button>
+</div>
+
+<div [hidden]="!userService.getToken()">
+  <button [routerLink]="'history'">History</button>
+  <button (click)="logout()">Logout</button>
+</div>

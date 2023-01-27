@@ -17,5 +17,6 @@ export class DishesComponent implements OnInit {
 
   ngOnInit(): void {
     this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
+    setTimeout(() => this.dishService.watchDishes.next(null), 0);
   }
 }

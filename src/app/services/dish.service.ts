@@ -38,6 +38,7 @@ export class DishService {
 
             }),
             switchMap(dishes => {
+                console.log(dishes);
                 if (obj?.priceRange.length > 0) {
                   return of(dishes.filter(d => d.price >= this.priceRange[0] && d.price <= this.priceRange[1]));
                 }
@@ -45,9 +46,6 @@ export class DishService {
               }
             ))
         }));
-
-
-    setTimeout(() => this.watchDishes.next(null), 0);
   }
 
 
