@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {CartService} from "../../services/cart.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,8 @@ import {CartService} from "../../services/cart.service";
 })
 export class HeaderComponent {
 
-  constructor(public cartService: CartService) {
+  constructor(public cartService: CartService, public userService: UserService) {
+
   }
 
   // TODO

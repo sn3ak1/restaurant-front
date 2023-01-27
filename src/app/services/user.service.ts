@@ -207,6 +207,14 @@ export class UserService {
       }));
   }
 
+  canBuy() {
+    if (!this.getToken()) return of(false);
+    return this.getUser().pipe(
+      switchMap((user: User) => {
+        return of(user.role === 'user');
+      }));
+  }
+
   getHistory() {
     return this.getUser().pipe(
       switchMap((user: User) => {

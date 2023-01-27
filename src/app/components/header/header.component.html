@@ -4,6 +4,6 @@
   <a routerLink="/dishes">MENU</a>
   <div class="flex">
     <app-user-controls></app-user-controls>
-    <a routerLink="/cart">CART: {{cartService.getAllDishCount()}}</a>
+    <a [class.hidden]="!(userService.canBuy() | async)" routerLink="/cart">CART: {{cartService.getAllDishCount()}}</a>
   </div>
 </nav>

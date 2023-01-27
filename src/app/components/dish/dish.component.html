@@ -25,7 +25,7 @@
     <div class="buy">
       <h3>{{dish.price | currency:'USD':'symbol'}}</h3>
       <h5 [class.red]="dishesLeft()<4">Quantity: {{dishesLeft()}}</h5>
-      <div class="buy-buttons" [hidden]="this.userService.getToken()===null">
+      <div class="buy-buttons" [class.hidden]="!(this.userService.canBuy() | async)">
         <button [class.invisible]="!dishesLeft()" (click)="cartService.addDish(dish)">+</button>
         <button [class.invisible]="!dishCount()" (click)="cartService.removeDish(dish)">-</button>
       </div>
